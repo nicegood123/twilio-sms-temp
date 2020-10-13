@@ -12,13 +12,13 @@
     // $token = 'your_twilio_token';
     // $twilio_number = 'your_twilio_number';
     $sid = 'ACd69baf0b3f84f3a2ad6914785a7e8188';
-    $token = '181b369f684483dab63b­f05bdc1f0872';
+    $token = '181b369f684483dab63bf05bdc1f0872';
     $twilio_number = '+16265328695';
     $client = new Client($sid, $token);
 
 
     // Use the client to do fun stuff like send text messages!
-    $number = $_POST["program"];
+    $program = $_POST["program"];
     $message = $_POST["message"];
     $success = true;
 
@@ -29,15 +29,14 @@
         $sql = "SELECT phone_number FROM user WHERE program = '".$program."' ";
         $result = $con->query($sql);
 
-
-        $phone_number = array();
         if($result->num_rows > 0) {
             $i = 0;
             while($row = $result->fetch_assoc()) {
-                $phone_number[] = $row['phone_number'];
+                // $phone_number[$i] = $row['phone_number'];
+                $number = $row['phone_number'];
                 $client->messages->create(
                     // the number you'd like to send the message to
-                    $phone_number[$i],
+                    $number,
                     [
                         // A free Twilio phone number
                         'from' => $twilio_number,
@@ -45,12 +44,12 @@
                         'body' => $message
                     ]
                 );
-                $i++;
             }
+   
+            $number = '';
+            $message = '';
         }
-
-        $number = '';
-        $message = '';
+    
     } catch (Exception $e) {
         $success = false;
     }
