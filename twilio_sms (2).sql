@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2020 at 02:55 PM
+-- Generation Time: Oct 13, 2020 at 11:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -25,6 +25,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `message_log`
+--
+
+CREATE TABLE `message_log` (
+  `user_id` int(8) NOT NULL,
+  `message` text DEFAULT NULL,
+  `status` varchar(25) DEFAULT NULL,
+  `date_sent` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `message_log`
+--
+
+INSERT INTO `message_log` (`user_id`, `message`, `status`, `date_sent`) VALUES
+(474747, 'huy aljlfkajwelfj asshhh aast', 'delivered', '2020-10-13 21:14:24'),
+(474747, 'henlo!', 'delivered', '2020-10-13 21:10:21'),
+(455050, 'ayayyayay ahhhh basta!', 'delivered', '2020-10-13 21:19:26'),
+(303030, 'try rani alskjdf;aiowejoi;fawef', 'delivered', '2020-10-13 21:25:15'),
+(455050, 'try rani alskjdf;aiowejoi;fawef', 'delivered', '2020-10-13 21:25:15'),
+(303030, 'last try di nako gutom na ahhafhahfahahah', 'delivered', '2020-10-13 21:26:10'),
+(455050, 'last try di nako gutom na ahhafhahfahahah', 'delivered', '2020-10-13 21:26:10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -35,7 +61,7 @@ CREATE TABLE `user` (
   `phone_number` varchar(13) NOT NULL,
   `program` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `type` int(11) NOT NULL DEFAULT 0
+  `type` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -43,10 +69,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `phone_number`, `program`, `password`, `type`) VALUES
-(455050, 'Gisan Geff', 'Raniego', '+639123789168', 'BSIT', '1234', 0),
-(474747, 'Geff', 'Rance', '+639123798168', 'Secret', 'nicegood321', 0),
-(6666666, 'Keke', 'Beke', '+639956139111', 'BSIT', '123456', 0),
-(6666667, 'Beke', 'Keke', '+639956139123', 'BWSIT', '123321', 0);
+(303030, 'Jervey', 'Pamad', '+639956130902', 'BSIT', '321', 0),
+(455050, 'Gisan Geff', 'Raniego', '+639487776849', 'BSIT', '1234', 1),
+(474747, 'Miriam', 'Trinidad', '+639123789168', 'BSCS', '123456', 0);
 
 --
 -- Indexes for dumped tables
