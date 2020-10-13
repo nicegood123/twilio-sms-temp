@@ -20,7 +20,7 @@
     // Use the client to do fun stuff like send text messages!
     $number = $_POST["program"];
     $message = $_POST["message"];
-    // $success = true;
+    $success = true;
 
     try {  
         $con = mysqli_connect('localhost','root','');
