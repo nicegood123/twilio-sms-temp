@@ -16,6 +16,7 @@
     $client = new Client($sid, $token);
 
     // Use the client to do fun stuff like send text messages!
+    $id = $_POST['user_id'];
     $number = $_POST["number"];
     $message = $_POST["message"];
     $success = true;
@@ -32,8 +33,18 @@
             ]
         );
 
+        session_start();
+
+        $con = mysqli_connect('localhost','root','');
+        mysqli_select_db($con, 'twilio_sms');
+
+
+        $sql ="INSERT INTO message_log VALUES ('$id','$message', 'delivered', now())";
+        mysqli_query($con,$sql);
+
         $number = '';
         $message = '';
+
     } catch (Exception $e) {
         $success = false;
     }

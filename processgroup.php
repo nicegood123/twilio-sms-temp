@@ -46,6 +46,19 @@
                 );
             }
    
+            $con = mysqli_connect('localhost','root','');
+            mysqli_select_db($con, 'twilio_sms');
+
+            $sql = "SELECT id FROM user WHERE program = '".$program."' ";
+            $result = $con->query($sql);
+
+            while($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            
+            $sql ="INSERT INTO message_log VALUES ('$id','$message', 'delivered', now())";
+            mysqli_query($con,$sql);
+            }
+
             $number = '';
             $message = '';
         }

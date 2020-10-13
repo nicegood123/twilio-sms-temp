@@ -27,7 +27,7 @@ if(!isset($_SESSION['is_logged_in'])){ header('location:index.php'); }
                     <th>Program</th>
                     <th>Action</th>
                 </tr>
-            <?php
+                <?php
                 $con = mysqli_connect('localhost','root','');
                 mysqli_select_db($con, 'twilio_sms');    
 
@@ -44,11 +44,12 @@ if(!isset($_SESSION['is_logged_in'])){ header('location:index.php'); }
                     <td><?php echo $row["phone_number"]; ?></td>
                     <td><?php echo $row["program"]; ?></td>
                     <td>
-                        <button class="btn btn-secondary" id="smsbtn" data-toggle="modal" data-target="#msgModal">SMS</button>
-                        <button class="btn btn-secondary" data-toggle="modal" data-target="">History</button>
+                        <button class="btn btn-secondary" id="smsbtn" data-toggle="modal"
+                            data-target="#msgModal">SMS</button>
+                        <a href="messagelog.php?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Logs</a>
                     </td>
                 </tr>
-            <?php 
+                <?php 
                     } 
                 } 
             ?>
@@ -69,6 +70,10 @@ if(!isset($_SESSION['is_logged_in'])){ header('location:index.php'); }
                         <button class="close" type="button" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
+                        <div class="form-group" hidden>
+                            <label for="indivMsg">ID</label>
+                            <input type="text" id="user_id" name="user_id" class="form-control" required>
+                        </div>
                         <div class="form-group">
                             <label for="indivMsg">Phone Number</label>
                             <input type="text" id="number" name="number" class="form-control" required>
@@ -100,12 +105,13 @@ if(!isset($_SESSION['is_logged_in'])){ header('location:index.php'); }
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="groupProg">Enter Program</label>
-                            <input type="text" id="program" name="program" class="form-control" placeholder="Enter Course"
-                                required>
+                            <input type="text" id="program" name="program" class="form-control"
+                                placeholder="Enter Course" required>
                         </div>
                         <div class="form-group">
                             <label for="userSMS">Type your message here</label>
-                            <textarea class="form-control" name="message" id="message" rows="3" placeholder="type here"></textarea>
+                            <textarea class="form-control" name="message" id="message" rows="3"
+                                placeholder="type here"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -120,6 +126,7 @@ if(!isset($_SESSION['is_logged_in'])){ header('location:index.php'); }
     <script src="js/bootstrap.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/tablejs.js"></script>
+
 </body>
 
 </html>
